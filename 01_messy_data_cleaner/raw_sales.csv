@@ -1,0 +1,8 @@
+transaction_id,customer_name,item,quantity,unit_price
+T1001,John Doe, kayak ,2,35.00
+T1002,Jane Smith,bike,1,40.00
+T1003,  Bob Johnson  ,tent,N/A,25.00
+T1004,Alice Brown,SNOWSHOES,1,15.00
+T1005,,hoodie,3,20.00
+T1006,Charlie Green,bike,2,forty
+T1007,Diana Prince, kayak,1,35.00
