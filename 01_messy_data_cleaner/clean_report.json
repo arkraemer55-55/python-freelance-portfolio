@@ -1,0 +1,12 @@
+{
+    "report_summary": {
+        "gross_revenue": 265.0,
+        "successful_transactions": 6
+    },
+    "items_sold_distribution": {
+        "Kayak": 2,
+        "Bike": 1,
+        "Snowshoes": 2,
+        "Hoodie": 1
+    }
+}
