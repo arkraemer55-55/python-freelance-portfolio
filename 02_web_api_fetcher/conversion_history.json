@@ -1,0 +1,44 @@
+[
+    {
+        "timestamp": "2026-07-19-18:56:28",
+        "usd_amount": 89.0,
+        "target_currency": "CAD",
+        "exchange_rate": 1.402072,
+        "converted_currency": 124.78
+    },
+    {
+        "timestamp": "2026-07-19-18:57:42",
+        "usd_amount": 67.0,
+        "target_currency": "EUR",
+        "exchange_rate": 0.874488,
+        "converted_currency": 58.59
+    },
+    {
+        "timestamp": "2026-07-19-19:19:36",
+        "usd_amount": 78.0,
+        "target_currency": "EUR",
+        "exchange_rate": 0.874488,
+        "converted_currency": 68.21
+    },
+    {
+        "timestamp": "2026-07-19-19:22:21",
+        "usd_amount": 78.0,
+        "target_currency": "EUR",
+        "exchange_rate": 0.874488,
+        "converted_currency": 68.21
+    },
+    {
+        "timestamp": "2026-07-19-19:26:32",
+        "usd_amount": 34.0,
+        "target_currency": "EUR",
+        "exchange_rate": 0.874488,
+        "converted_currency": 29.73
+    },
+    {
+        "timestamp": "2026-07-19-19:26:46",
+        "usd_amount": 23.0,
+        "target_currency": "TRY",
+        "exchange_rate": 47.172159,
+        "converted_currency": 1084.96
+    }
+]
