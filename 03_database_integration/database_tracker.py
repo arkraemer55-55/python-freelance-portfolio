@@ -24,9 +24,10 @@ def main_menu():
         print("\n=== CURRENCY TERMINAL & DATABASE===")
         print("1. Convert Currency")
         print("2. View Conversion History")
-        print("3. EXIT")
+        print("3. View Analytics and Insights")
+        print("4. EXIT")
 
-        choice = input("Select and option (1-3): ").strip()
+        choice = input("Select and option (1-4): ").strip()
 
         if choice == "1":
             currency_converter()
@@ -41,6 +42,25 @@ def main_menu():
                         f"ID: {log[0]} | Date: {log[1]} | ${log[2]:.2f} USD -> {log[5]:.2f} {log[3]}"
                     )
         elif choice == "3":
+            count, total_usd, avg_usd, max_usd = get_analytics_summary_db()
+
+            print("\n=== DATABASE ANALYTICS SUMMARY ===")
+            print(f"Total Transactions:   {count}")
+            print(f"Total USD Converted:  ${total_usd:.2f}")
+            print(f"Average USD Amount:   ${avg_usd:.2f}")
+            print(f"Largest Transaction:  ${max_usd:.2f}")
+
+            breakdown = get_currency_breakdown()
+            print("\n--- CURRENCY BREAKDOWN ---")
+            if not breakdown:
+                print("No data available.")
+            else:
+                for currency, total_count, total_amount in breakdown:
+                    print(
+                        f"{currency}: {total_count} transaction(s) | Total: ${total_amount:.2f}"
+                    )
+
+        elif choice == "4":
             print("Goodbye!")
             break
         else:
@@ -136,6 +156,41 @@ def fetch_history_db():
     conn = sqlite3.connect(DB_FILE)
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM conversions ORDER BY id DESC;")
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
+
+
+def get_analytics_summary_db():
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+                   SELECT
+                        COUNT(*),
+                        COALESCE(SUM(usd_amount),0),
+                        COALESCE(AVG(usd_amount),0),
+                        COALESCE(MAX(usd_amount),0)
+                   FROM conversions;
+                   """)
+    stats = cursor.fetchone()
+    conn.close()
+    return stats
+
+
+def get_currency_breakdown():
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+
+    cursor.execute("""
+                    SELECT
+                        target_currency,
+                        COUNT(*),
+                        SUM(converted_amount)
+                    FROM conversions
+                    GROUP BY target_currency
+                    ORDER BY COUNT(*) DESC;
+                   """)
     rows = cursor.fetchall()
     conn.close()
     return rows
