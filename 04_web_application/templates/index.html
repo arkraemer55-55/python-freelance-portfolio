@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=:"UTF-8">
+  <meta name="viewport" contact="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+  <style>
+    body{
+        font-family: system-ui, -apple-system, sans-serif;
+        background-color: #1a1a24;
+        color: #e0e0e0;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .card{
+        background-color: #2a2a36;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-top: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    h1 { color: #61afef; }
+    .highlight { color: #98c379; font-weight: bold; }
+  </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+  <div class="card">
+      <p>Status: <span class="highlight">{{ status_message }}</span></p>
+      <p>This web dashboard is rendering dynamically in <strong>Jinja2 templates</strong>!</p>
+    </div>
+  <div class="card">
+      <h2>Overall Analytics</h2>
+      <p>Total Transactions: <strong>{{ count }}</strong></p>
+      <p>Total USD Converted: <strong>${{ "%.2f"|format(total_usd) }}</strong></p>
+      <p>Average USD Transaction: <strong>${{ "%.2f"|format(avg_usd) }}</strong></p>
+      <p>Largest Single Transaction: <strong>${{ "%.2f"|format(max_usd) }}</strong></p>
+  </div>
+  <div class="card">
+      <h2>Currency Breakdown</h2>
+      <ul>
+      {% for currency, total_count, total_amount in breakdown %}
+          <li>
+              <strong>{{ currency }}</strong>: {{ total_count }} transaction(s) | Total: ${{ "%.2f"|format(total_amount) }}
+          </li>
+      {% else %}
+          <li>No currency conversions logged yet.</li>
+      {% endfor %}
+      </ul>
+  </div>
+  </body>
+</html>
